@@ -24,7 +24,7 @@
  * USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  */
-/* $XFree86$ */
+/* $XFree86: xc/programs/Xserver/hw/xfree86/drivers/sunffb/ffb_glyph.c,v 1.2 2000/05/23 04:47:45 dawes Exp $ */
 
 #include "ffb.h"
 #include "ffb_regs.h"

@@ -24,7 +24,7 @@
  * USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  */
-/* $XFree86$ */
+/* $XFree86: xc/programs/Xserver/hw/xfree86/drivers/sunffb/ffb_gc.c,v 1.4 2003/06/23 17:35:48 eich Exp $ */
 
 #include "ffb.h"
 #include "ffb_regs.h"
