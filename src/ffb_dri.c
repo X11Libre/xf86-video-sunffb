@@ -57,9 +57,9 @@ static char FFBKernelDriverName[] = "ffb";
 static char FFBClientDriverName[] = "ffb";
 
 /* Forward declarations. */
-static Bool FFBDRICreateContext(ScreenPtr, VisualPtr, drmContext,
+static Bool FFBDRICreateContext(ScreenPtr, VisualPtr, drm_context_t,
 				void *, DRIContextType);
-static void FFBDRIDestroyContext(ScreenPtr, drmContext, DRIContextType);
+static void FFBDRIDestroyContext(ScreenPtr, drm_context_t, DRIContextType);
 
 static void FFBDRIInitBuffers(WindowPtr, RegionPtr, CARD32);
 static void FFBDRIMoveBuffers(WindowPtr, DDXPointRec, RegionPtr, CARD32);
@@ -123,8 +123,8 @@ FFBDRIInitVisualConfigs(ScreenPtr pScreen)
 	pConfigs->stencilSize = 0;
 	pConfigs->auxBuffers = 0;
 	pConfigs->level = 0;
-	pConfigs->visualRating = 0;
-	pConfigs->transparentPixel = 0;
+	pConfigs->visualRating = GLX_NONE;
+	pConfigs->transparentPixel = GLX_NONE;
 	pConfigs->transparentRed = 0;
 	pConfigs->transparentGreen = 0;
 	pConfigs->transparentBlue = 0;
@@ -416,7 +416,7 @@ FFBDRICloseScreen(ScreenPtr pScreen)
 }
 
 static Bool
-FFBDRICreateContext(ScreenPtr pScreen, VisualPtr visual, drmContext hwContext,
+FFBDRICreateContext(ScreenPtr pScreen, VisualPtr visual, drm_context_t hwContext,
 		 void *pVisualConfigPriv, DRIContextType context)
 {
 	/* Nothing to do... */
@@ -424,7 +424,7 @@ FFBDRICreateContext(ScreenPtr pScreen, VisualPtr visual, drmContext hwContext,
 }
 
 static void
-FFBDRIDestroyContext(ScreenPtr pScreen, drmContext hwContext, DRIContextType context)
+FFBDRIDestroyContext(ScreenPtr pScreen, drm_context_t hwContext, DRIContextType context)
 {
 	/* Nothing to do... */
 }
