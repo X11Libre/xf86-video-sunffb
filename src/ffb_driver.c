@@ -58,8 +58,8 @@ static void	FFBAdjustFrame(int scrnIndex, int x, int y, int flags);
 
 /* Optional functions */
 static void	FFBFreeScreen(int scrnIndex, int flags);
-static ModeStatus FFBValidMode(int scrnIndex, DisplayModePtr mode,
-			       Bool verbose, int flags);
+static int	FFBValidMode(int scrnIndex, DisplayModePtr mode, Bool verbose,
+			     int flags);
 static void     FFBDPMSMode(ScrnInfoPtr pScrn, int DPMSMode, int flags);
 /* ffb_dga.c */
 extern void FFB_InitDGA(ScreenPtr pScreen);
@@ -114,7 +114,7 @@ static XF86ModuleVersionInfo sunffbVersRec =
 	MODULEVENDORSTRING,
 	MODINFOSTRING1,
 	MODINFOSTRING2,
-	XORG_VERSION_CURRENT,
+	XF86_VERSION_CURRENT,
 	FFB_MAJOR_VERSION, FFB_MINOR_VERSION, FFB_PATCHLEVEL,
 	ABI_CLASS_VIDEODRV,
 	ABI_VIDEODRV_VERSION,
@@ -1078,7 +1078,7 @@ FFBFreeScreen(int scrnIndex, int flags)
 /* Checks if a mode is suitable for the selected chipset. */
 
 /* Optional */
-static ModeStatus
+static int
 FFBValidMode(int scrnIndex, DisplayModePtr mode, Bool verbose, int flags)
 {
     if (mode->Flags & V_INTERLACE)
