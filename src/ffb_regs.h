@@ -24,7 +24,7 @@
  * USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  */
-/* $XFree86: xc/programs/Xserver/hw/xfree86/drivers/sunffb/ffb_regs.h,v 1.1 2000/05/18 23:21:37 dawes Exp $ */
+/* $XFree86$ */
 
 #ifndef FFBREGS_H
 #define FFBREGS_H
@@ -431,6 +431,19 @@ typedef struct _ffb_fbc {
 #define FFB_MER_EIRA		0x00000080 /* Enable read-ahead, increasing */
 #define FFB_MER_EDRA		0x000000c0 /* Enable read-ahead, decreasing */
 #define FFB_MER_DRA		0x00000040 /* No read-ahead */
+
+/* Alpha Blend Control */
+#define FFB_BLENDC_FORCE_ONE	0x00000010 /* Defines 0xff as 1.0 */
+#define FFB_BLENDC_DF_MASK	0x0000000c /* Destination Frac Mask */
+#define FFB_BLENDC_DF_ZERO	0x00000000 /* Destination Frac: 0.00 */
+#define FFB_BLENDC_DF_ONE	0x00000004 /* Destination Frac: 1.00 */
+#define FFB_BLENDC_DF_ONE_M_A	0x00000008 /* Destination Frac: 1.00 - Xsrc */
+#define FFB_BLENDC_DF_A		0x0000000c /* Destination Frac: Xsrc */
+#define FFB_BLENDC_SF_MASK	0x00000003 /* Source Frac Mask */
+#define FFB_BLENDC_SF_ZERO	0x00000000 /* Source Frac: 0.00 */
+#define FFB_BLENDC_SF_ONE	0x00000001 /* Source Frac: 1.00 */
+#define FFB_BLENDC_SF_ONE_M_A	0x00000002 /* Source Frac: 1.00 - Xsrc */
+#define FFB_BLENDC_SF_A		0x00000003 /* Source Frac: Xsrc */
 
 /* FBram Config 0 */
 #define FFB_FBCFG0_RFTIME	0xff800000

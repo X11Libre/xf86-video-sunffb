@@ -24,7 +24,7 @@
  * USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  */
-/* $XFree86: xc/programs/Xserver/hw/xfree86/drivers/sunffb/ffb.h,v 1.8 2002/12/06 02:44:03 tsi Exp $ */
+/* $XFree86: xc/programs/Xserver/hw/xfree86/drivers/sunffb/ffb.h,v 1.7tsi Exp $ */
 
 #ifndef FFB_H
 #define FFB_H
@@ -33,6 +33,7 @@
 #include "xf86_OSproc.h"
 #include "xf86_ansic.h"
 #include "xf86RamDac.h"
+#include "xaa.h"
 #include "Xmd.h"
 #include "gcstruct.h"
 #include "windowstr.h"
@@ -187,6 +188,19 @@ typedef struct {
 	unsigned char has_double_res;
 	unsigned char has_z_buffer;
 	unsigned char has_double_buffer;
+
+	/* XAA related info */
+	XAAInfoRecPtr pXAAInfo;
+	unsigned int xaa_fbc;
+	unsigned int xaa_wid;
+	unsigned int xaa_planemask;
+	unsigned int xaa_linepat;
+	int xaa_xdir, xaa_ydir, xaa_rop;
+	unsigned char *xaa_scanline_buffers[2];
+	int xaa_scanline_x, xaa_scanline_y, xaa_scanline_w;
+	unsigned char *xaa_tex;
+	int xaa_tex_pitch, xaa_tex_width, xaa_tex_height;
+	unsigned int xaa_tex_color;
 
 	enum ffb_resolution ffb_res;
 	BoxRec ClippedBoxBuf[64];
