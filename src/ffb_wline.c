@@ -23,7 +23,7 @@
  * IN THE SOFTWARE.
  *
  */
-/* $XFree86: xc/programs/Xserver/hw/xfree86/drivers/sunffb/ffb_wline.c,v 1.3 2001/03/03 22:41:34 tsi Exp $ */
+/* $XFree86: xc/programs/Xserver/hw/xfree86/drivers/sunffb/ffb_wline.c,v 1.2 2000/05/23 04:47:45 dawes Exp $ */
 
 #define PSZ 32
 
