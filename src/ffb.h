@@ -34,7 +34,7 @@
 #include "xf86_ansic.h"
 #include "xf86RamDac.h"
 #include "xaa.h"
-#include "Xmd.h"
+#include <X11/Xmd.h>
 #include "gcstruct.h"
 #include "windowstr.h"
 #include "ffb_regs.h"
@@ -47,7 +47,7 @@
 #ifndef  DPMS_SERVER
 #define  DPMS_SERVER
 #endif   /* DPMS_SERVER */
-#include "extensions/dpms.h"
+#include <X11/extensions/dpms.h>
 
 
 /* Various offsets in virtual (ie. mmap()) spaces Linux and Solaris support. */
