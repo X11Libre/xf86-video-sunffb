@@ -44,7 +44,6 @@
 #define _XF86DRI_SERVER_
 #include "xf86dri.h"
 #include "dri.h"
-#include "dristruct.h"
 
 #include "GL/glxint.h"
 
