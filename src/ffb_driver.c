@@ -77,7 +77,7 @@ void FFBSync(ScrnInfoPtr pScrn);
  * an upper-case version of the driver name.
  */
 
-DriverRec SUNFFB = {
+_X_EXPORT DriverRec SUNFFB = {
     VERSION,
     FFB_DRIVER_NAME,
     FFBIdentify,
@@ -118,7 +118,7 @@ static XF86ModuleVersionInfo sunffbVersRec =
 	{0,0,0,0}
 };
 
-XF86ModuleData sunffbModuleData = { &sunffbVersRec, ffbSetup, NULL };
+_X_EXPORT XF86ModuleData sunffbModuleData = { &sunffbVersRec, ffbSetup, NULL };
 
 pointer
 ffbSetup(pointer module, pointer opts, int *errmaj, int *errmin)
