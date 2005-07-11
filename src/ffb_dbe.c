@@ -23,6 +23,10 @@
  */
 /* $XFree86: xc/programs/Xserver/hw/xfree86/drivers/sunffb/ffb_dbe.c,v 1.1 2000/05/23 04:47:44 dawes Exp $ */
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 #define NEED_REPLIES
 #define NEED_EVENTS
 #include <X11/X.h>

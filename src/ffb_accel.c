@@ -26,6 +26,10 @@
  */
 /* $XFree86: xc/programs/Xserver/hw/xfree86/drivers/sunffb/ffb_accel.c,v 1.6tsi Exp $ */
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 #include	"scrnintstr.h"
 #include	"pixmapstr.h"
 #include	"regionstr.h"

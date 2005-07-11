@@ -24,7 +24,11 @@
  * USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  */
-/* $XFree86: xc/programs/Xserver/hw/xfree86/drivers/sunffb/ffb_frect.c,v 1.3 2001/04/05 17:42:33 dawes Exp $ */
+/* $XFree86: xc/programs/Xserver/hw/xfree86/drivers/sunffb/ffb_frect.c,v 1.2 2000/05/23 04:47:44 dawes Exp $ */
+
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
 
 #include "ffb.h"
 #include "ffb_regs.h"
