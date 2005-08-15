@@ -242,7 +242,7 @@ FFBDRIScreenInit(ScreenPtr pScreen)
 	pDRIInfo->clientDriverName = FFBClientDriverName;
 
 	pDRIInfo->ddxDriverMajorVersion = 0;
-	pDRIInfo->ddxDriverMinorVersion = 0;
+	pDRIInfo->ddxDriverMinorVersion = 1;
 	pDRIInfo->ddxDriverPatchVersion = 1;
 
 	pDRIInfo->busIdString = xalloc(64); /* Freed in DRIDestroyInfoRec */
@@ -321,7 +321,6 @@ FFBDRIScreenInit(ScreenPtr pScreen)
 		return FALSE;
 	}
 	pFfbDRI->sFbcRegs = FFB_FBC_REGS_SIZE;
-	pFfbDRI->mFbcRegs = 0;
 
 	xf86DrvMsg(pScreen->myNum, X_INFO,
 		   "[drm] FBC Register handle = 0x%08x\n",
@@ -334,7 +333,6 @@ FFBDRIScreenInit(ScreenPtr pScreen)
 		return FALSE;
 	}
 	pFfbDRI->sDacRegs = FFB_DAC_SIZE;
-	pFfbDRI->mDacRegs = 0;
 
 	xf86DrvMsg(pScreen->myNum, X_INFO,
 		   "[drm] DAC Register handle = 0x%08x\n",
@@ -348,7 +346,6 @@ FFBDRIScreenInit(ScreenPtr pScreen)
 		return FALSE;
 	}
 	pFfbDRI->sSfb8r = FFB_SFB8R_SIZE;
-	pFfbDRI->mSfb8r = 0;
 
 	xf86DrvMsg(pScreen->myNum, X_INFO,
 		   "[drm] SFB8R handle = 0x%08x\n",
@@ -361,7 +358,6 @@ FFBDRIScreenInit(ScreenPtr pScreen)
 		return FALSE;
 	}
 	pFfbDRI->sSfb32 = FFB_SFB32_SIZE;
-	pFfbDRI->mSfb32 = 0;
 
 	xf86DrvMsg(pScreen->myNum, X_INFO,
 		   "[drm] SFB32 handle = 0x%08x\n",
@@ -374,7 +370,6 @@ FFBDRIScreenInit(ScreenPtr pScreen)
 		return FALSE;
 	}
 	pFfbDRI->sSfb64 = FFB_SFB64_SIZE;
-	pFfbDRI->mSfb64 = 0;
 
 	xf86DrvMsg(pScreen->myNum, X_INFO,
 		   "[drm] SFB64 handle = 0x%08x\n",
