@@ -70,8 +70,13 @@ sunffb_drv_la_SOURCES += \
          ffb_drishare.h
 endif
 
+# The two assembly language files here could conceivably be 
+# resurrected by someone sufficiently motivated.
+
 EXTRA_DIST = \
          ffb_clip.c \
          ffb_clip.h \
          ffb_wline.c \
-         ffb_rect.c
+         ffb_rect.c \
+	 ffb_asm.s \
+	 VISmoveImage.s
