@@ -207,8 +207,6 @@ FFBDRIScreenInit(ScreenPtr pScreen)
 	 */
 	if (!xf86LoaderCheckSymbol("GlxSetVisualConfigs"))
 		return FALSE;
-	if (!xf86LoaderCheckSymbol("DRIScreenInit"))
-		return FALSE;
 	if (!xf86LoaderCheckSymbol("drmAvailable"))
 		return FALSE;
         if (!xf86LoaderCheckSymbol("DRIQueryVersion")) {
