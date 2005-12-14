@@ -1,3 +1,9 @@
+2005-12-14  Adam Jackson  <ajax@freedesktop.org>
+
+	* configure.ac:
+	* src/Makefile.am:
+	Bug #4890: Include the assembly in the build (Ferris McCormick)
+
 2005-12-06  Kevin E. Martin  <kem-at-freedesktop-dot-org>
 
 	* man/Makefile.am:

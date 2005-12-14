@@ -37,6 +37,12 @@ AM_MAINTAINER_MODE
 # Checks for programs.
 AC_DISABLE_STATIC
 AC_PROG_LIBTOOL
+case $host_cpu in
+    sparc*)
+        CCASFLAGS="-x assembler-with-cpp -Wa,-Av9a"
+        SPARC=yes
+esac
+AM_PROG_AS
 AC_PROG_CC
 
 AH_TOP([#include "xorg-server.h"])
@@ -93,6 +99,8 @@ if test "$DRI" = yes; then
         AC_DEFINE(XF86DRI,1,[Enable DRI driver support])
         AC_DEFINE(XF86DRI_DEVEL,1,[Enable developmental DRI driver support])
 fi
+
+AM_CONDITIONAL(SPARC, test x$SPARC = xyes)
 
 AC_SUBST([DRI_CFLAGS])
 AC_SUBST([XORG_CFLAGS])

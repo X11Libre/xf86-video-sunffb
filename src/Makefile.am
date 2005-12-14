@@ -28,6 +28,10 @@ sunffb_drv_la_LTLIBRARIES = sunffb_drv.la
 sunffb_drv_la_LDFLAGS = -module -avoid-version
 sunffb_drv_ladir = @moduledir@/drivers
 
+if SPARC
+SPARC_ASM_SRC = ffb_asm.s VISmoveImage.s
+endif
+
 sunffb_drv_la_SOURCES = \
          ffb_accel.c \
          ffb_attr.c \
@@ -62,7 +66,8 @@ sunffb_drv_la_SOURCES = \
          ffb_stip.h \
          ffb_stubs.c \
          ffb_wid.c \
-         ffb_zeroarc.c
+         ffb_zeroarc.c \
+         $(SPARC_ASM_SRC)
 
 if DRI 
 sunffb_drv_la_SOURCES += \
@@ -70,13 +75,8 @@ sunffb_drv_la_SOURCES += \
          ffb_drishare.h
 endif
 
-# The two assembly language files here could conceivably be 
-# resurrected by someone sufficiently motivated.
-
 EXTRA_DIST = \
          ffb_clip.c \
          ffb_clip.h \
          ffb_wline.c \
-         ffb_rect.c \
-	 ffb_asm.s \
-	 VISmoveImage.s
+         ffb_rect.c
