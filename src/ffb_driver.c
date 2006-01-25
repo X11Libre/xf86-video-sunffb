@@ -411,11 +411,6 @@ FFBPreInit(ScrnInfoPtr pScrn, int flags)
 	xf86DrvMsg(pScrn->scrnIndex, X_CONFIG, "Acceleration disabled\n");
     }
         
-    if (xf86LoadSubModule(pScrn, "xf8_32wid") == NULL) {
-	FFBFreeRec(pScrn);
-	return FALSE;
-    }
-
     if (xf86LoadSubModule(pScrn, "fb") == NULL) {
 	FFBFreeRec(pScrn);
 	return FALSE;

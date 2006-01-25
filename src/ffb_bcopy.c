@@ -41,7 +41,6 @@
 #include "cfb.h"
 #undef PSZ
 #include "cfb32.h"
-#include "cfb8_32wid.h"
 
 #ifdef FFB_BLOCKCOPY_IMPLEMENTED
 /* Due to VIS based copyarea and ffb rop vertscroll being significantly faster

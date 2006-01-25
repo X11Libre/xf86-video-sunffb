@@ -41,7 +41,6 @@
 #include "cfb.h"
 #undef PSZ
 #include "cfb32.h"
-#include "cfb8_32wid.h"
 
 #include "mi.h"
 #include "mifillarc.h"

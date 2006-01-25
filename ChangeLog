@@ -1,3 +1,10 @@
+2006-01-25  Adam Jackson  <ajax@freedesktop.org>
+
+	* src/ffb_bcopy.c:
+	* src/ffb_circle.c:
+	* src/ffb_driver.c:
+	Remove xf8_32wid damage, it is going away.
+
 2005-12-20  Kevin E. Martin  <kem-at-freedesktop-dot-org>
 
 	* configure.ac:
