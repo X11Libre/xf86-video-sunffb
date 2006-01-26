@@ -36,7 +36,6 @@
 #include "ffb_regs.h"
 #include "ffb_rcache.h"
 #include "ffb_fifo.h"
-#include "ffb_stip.h"
 #include "ffb_loops.h"
 
 static Bool FFB_OpenFramebuffer(ScrnInfoPtr, char **, unsigned char **,
