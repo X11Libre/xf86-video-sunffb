@@ -26,9 +26,10 @@
 #include "config.h"
 #endif
 
+#include <stdio.h>
+
 #include "xf86.h"
 #include "xf86_OSproc.h"
-#include "xf86_ansic.h"
 #include "xf86Priv.h"
 
 #include "xf86PciInfo.h"
