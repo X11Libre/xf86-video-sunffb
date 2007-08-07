@@ -70,9 +70,9 @@ void FFBSync(ScrnInfoPtr pScrn);
 #define FFB_VERSION 4000
 #define FFB_NAME "SUNFFB"
 #define FFB_DRIVER_NAME "sunffb"
-#define FFB_MAJOR_VERSION 1
-#define FFB_MINOR_VERSION 1
-#define FFB_PATCHLEVEL 0
+#define FFB_MAJOR_VERSION PACKAGE_VERSION_MAJOR
+#define FFB_MINOR_VERSION PACKAGE_VERSION_MINOR
+#define FFB_PATCHLEVEL PACKAGE_VERSION_PATCHLEVEL
 
 /* 
  * This contains the functions needed by the server after loading the driver
