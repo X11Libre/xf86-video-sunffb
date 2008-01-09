@@ -51,6 +51,5 @@ sunffb_drv_la_SOURCES = \
 
 if DRI 
 sunffb_drv_la_SOURCES += \
-         ffb_dri.c \
          ffb_drishare.h
 endif
