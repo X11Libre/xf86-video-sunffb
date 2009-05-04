@@ -53,11 +53,6 @@ AC_ARG_WITH(xorg-module-dir,
             [moduledir="$withval"],
             [moduledir="$libdir/xorg/modules"])
 
-AC_ARG_ENABLE(dri, AC_HELP_STRING([--disable-dri],
-                                  [Disable DRI support [[default=auto]]]),
-              [DRI="$enableval"],
-              [DRI=auto])
-
 # Checks for extensions
 XORG_DRIVER_CHECK_EXT(RANDR, randrproto)
 XORG_DRIVER_CHECK_EXT(RENDER, renderproto)
@@ -72,37 +67,8 @@ sdkdir=$(pkg-config --variable=sdkdir xorg-server)
 # Checks for header files.
 AC_HEADER_STDC
 
-if test "$DRI" != no; then
-        AC_CHECK_FILE([${sdkdir}/dri.h],
-                      [have_dri_h="yes"], [have_dri_h="no"])
-        AC_CHECK_FILE([${sdkdir}/sarea.h],
-                      [have_sarea_h="yes"], [have_sarea_h="no"])
-        AC_CHECK_FILE([${sdkdir}/dristruct.h],
-                      [have_dristruct_h="yes"], [have_dristruct_h="no"])
-fi
-
-AC_MSG_CHECKING([whether to include DRI support])
-if test x$DRI = xauto; then
-        if test "$have_dri_h" = yes -a \
-                "$have_sarea_h" = yes -a \
-                "$have_dristruct_h" = yes; then
-                DRI="yes"
-        else
-                DRI="no"
-        fi
-fi
-AC_MSG_RESULT([$DRI])
-
-AM_CONDITIONAL(DRI, test x$DRI = xyes)
-if test "$DRI" = yes; then
-        PKG_CHECK_MODULES(DRI, [libdrm >= 2.0 xf86driproto])
-        AC_DEFINE(XF86DRI,1,[Enable DRI driver support])
-        AC_DEFINE(XF86DRI_DEVEL,1,[Enable developmental DRI driver support])
-fi
-
 AM_CONDITIONAL(SPARC, test x$SPARC = xyes)
 
-AC_SUBST([DRI_CFLAGS])
 AC_SUBST([XORG_CFLAGS])
 AC_SUBST([moduledir])
 
