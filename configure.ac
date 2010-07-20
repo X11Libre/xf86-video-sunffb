@@ -49,7 +49,6 @@ case $host_cpu in
         SPARC=yes
 esac
 AM_PROG_AS
-AC_PROG_CC
 
 AH_TOP([#include "xorg-server.h"])
 
