@@ -43,6 +43,10 @@
 #include	"ffb_loops.h"
 #include	"ffb_regs.h"
 
+/* VISmoveImage.s */
+extern void VISmoveImageRL(unsigned char *src, unsigned char *dst, long w, long h, long skind, long dkind);
+extern void VISmoveImageLR(unsigned char *src, unsigned char *dst, long w, long h, long skind, long dkind);
+
 /* Indexed by ffb resolution enum. */
 struct fastfill_parms ffb_fastfill_parms[] = {
 	/* fsmall, psmall,  ffh,  ffw,  pfh,  pfw */
