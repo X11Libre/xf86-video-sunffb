@@ -858,15 +858,15 @@ Bool FFBAccelInit(ScreenPtr pScreen, FFBPtr pFfb)
 		return FALSE;
 	}
 
-	pFfb->xaa_scanline_buffers[0] = xalloc(2048 * 4);
+	pFfb->xaa_scanline_buffers[0] = malloc(2048 * 4);
 	if (!pFfb->xaa_scanline_buffers[0]) {
 		XAADestroyInfoRec(infoRec);
 		return FALSE;
 	}
 
-	pFfb->xaa_scanline_buffers[1] = xalloc(2048 * 4);
+	pFfb->xaa_scanline_buffers[1] = malloc(2048 * 4);
 	if (!pFfb->xaa_scanline_buffers[1]) {
-		xfree(pFfb->xaa_scanline_buffers[0]);
+		free(pFfb->xaa_scanline_buffers[0]);
 		XAADestroyInfoRec(infoRec);
 		return FALSE;
 	}
@@ -1084,8 +1084,8 @@ Bool FFBAccelInit(ScreenPtr pScreen, FFBPtr pFfb)
 
 	if (!XAAInit(pScreen, infoRec)) {
 		XAADestroyInfoRec(infoRec);
-		xfree(pFfb->xaa_scanline_buffers[0]);
-		xfree(pFfb->xaa_scanline_buffers[1]);
+		free(pFfb->xaa_scanline_buffers[0]);
+		free(pFfb->xaa_scanline_buffers[1]);
 		pFfb->pXAAInfo = NULL;
 		FFBWidFree(pFfb, pFfb->xaa_wid);
 		return FALSE;

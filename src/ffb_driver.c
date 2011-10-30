@@ -175,7 +175,7 @@ FFBFreeRec(ScrnInfoPtr pScrn)
 
     pFfb = GET_FFB_FROM_SCRN(pScrn);
 
-    xfree(pScrn->driverPrivate);
+    free(pScrn->driverPrivate);
     pScrn->driverPrivate = NULL;
 
     return;
@@ -245,7 +245,7 @@ FFBProbe(DriverPtr drv, int flags)
 		   devSections, numDevSections,
 		   drv, &usedChips);
 				    
-    xfree(devSections);
+    free(devSections);
     if (numUsed <= 0)
 	return FALSE;
 
@@ -279,9 +279,9 @@ FFBProbe(DriverPtr drv, int flags)
 	    xf86AddEntityToScreen(pScrn, pEnt->index);
 	    foundScreen = TRUE;
 	}
-	xfree(pEnt);
+	free(pEnt);
     }
-    xfree(usedChips);
+    free(usedChips);
     return foundScreen;
 }
 
@@ -356,7 +356,7 @@ FFBPreInit(ScrnInfoPtr pScrn, int flags)
     /* Collect all of the relevant option flags (fill in pScrn->options) */
     xf86CollectOptions(pScrn, NULL);
     /* Process the options */
-    if (!(pFfb->Options = xalloc(sizeof(FFBOptions))))
+    if (!(pFfb->Options = malloc(sizeof(FFBOptions))))
 	return FALSE;
     memcpy(pFfb->Options, FFBOptions, sizeof(FFBOptions));
     xf86ProcessOptions(pScrn->scrnIndex, pScrn->options, pFfb->Options);
