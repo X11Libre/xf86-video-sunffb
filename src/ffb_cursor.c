@@ -112,7 +112,7 @@ FFBSetCursorColors(ScrnInfoPtr pScrn, int bg, int fg)
 Bool 
 FFBHWCursorInit(ScreenPtr pScreen)
 {
-    ScrnInfoPtr pScrn = xf86Screens[pScreen->myNum];
+    ScrnInfoPtr pScrn = xf86ScreenToScrn(pScreen);
     FFBPtr pFfb;
     xf86CursorInfoPtr infoPtr;
 

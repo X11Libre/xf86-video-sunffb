@@ -42,22 +42,21 @@ static const OptionInfoRec * FFBAvailableOptions(int chipid, int busid);
 static void	FFBIdentify(int flags);
 static Bool	FFBProbe(DriverPtr drv, int flags);
 static Bool	FFBPreInit(ScrnInfoPtr pScrn, int flags);
-static Bool	FFBScreenInit(int Index, ScreenPtr pScreen, int argc,
-			      char **argv);
-static Bool	FFBEnterVT(int scrnIndex, int flags);
-static void	FFBLeaveVT(int scrnIndex, int flags);
-static Bool	FFBCloseScreen(int scrnIndex, ScreenPtr pScreen);
+static Bool	FFBScreenInit(SCREEN_INIT_ARGS_DECL);
+static Bool	FFBEnterVT(VT_FUNC_ARGS_DECL);
+static void	FFBLeaveVT(VT_FUNC_ARGS_DECL);
+static Bool	FFBCloseScreen(CLOSE_SCREEN_ARGS_DECL);
 static Bool	FFBSaveScreen(ScreenPtr pScreen, int mode);
 static void	FFBDPMSSet(ScrnInfoPtr pScrn, int mode, int flags);
 
 /* Required if the driver supports mode switching */
-static Bool	FFBSwitchMode(int scrnIndex, DisplayModePtr mode, int flags);
+static Bool	FFBSwitchMode(SWITCH_MODE_ARGS_DECL);
 /* Required if the driver supports moving the viewport */
-static void	FFBAdjustFrame(int scrnIndex, int x, int y, int flags);
+static void	FFBAdjustFrame(ADJUST_FRAME_ARGS_DECL);
 
 /* Optional functions */
-static void	FFBFreeScreen(int scrnIndex, int flags);
-static ModeStatus FFBValidMode(int scrnIndex, DisplayModePtr mode,
+static void	FFBFreeScreen(FREE_SCREEN_ARGS_DECL);
+static ModeStatus FFBValidMode(SCRN_ARG_TYPE arg, DisplayModePtr mode,
 			       Bool verbose, int flags);
 static void     FFBDPMSMode(ScrnInfoPtr pScrn, int DPMSMode, int flags);
 /* ffb_dga.c */
@@ -573,7 +572,7 @@ FFBProbeBoardType(FFBPtr pFfb)
 /* This gets called at the start of each server generation */
 
 static Bool
-FFBScreenInit(int scrnIndex, ScreenPtr pScreen, int argc, char **argv)
+FFBScreenInit(SCREEN_INIT_ARGS_DECL)
 {
     ScrnInfoPtr pScrn;
     FFBPtr pFfb;
@@ -584,7 +583,7 @@ FFBScreenInit(int scrnIndex, ScreenPtr pScreen, int argc, char **argv)
     /* 
      * First get the ScrnInfoRec
      */
-    pScrn = xf86Screens[pScreen->myNum];
+    pScrn = xf86ScreenToScrn(pScreen);
 
     pFfb = GET_FFB_FROM_SCRN(pScrn);
 
@@ -822,7 +821,7 @@ FFBScreenInit(int scrnIndex, ScreenPtr pScreen, int argc, char **argv)
 
 /* Usually mandatory */
 static Bool
-FFBSwitchMode(int scrnIndex, DisplayModePtr mode, int flags)
+FFBSwitchMode(SWITCH_MODE_ARGS_DECL)
 {
     return TRUE;
 }
@@ -834,7 +833,7 @@ FFBSwitchMode(int scrnIndex, DisplayModePtr mode, int flags)
  */
 /* Usually mandatory */
 static void 
-FFBAdjustFrame(int scrnIndex, int x, int y, int flags)
+FFBAdjustFrame(ADJUST_FRAME_ARGS_DECL)
 {
     /* we don't support virtual desktops */
     return;
@@ -847,9 +846,9 @@ FFBAdjustFrame(int scrnIndex, int x, int y, int flags)
 
 /* Mandatory */
 static Bool
-FFBEnterVT(int scrnIndex, int flags)
+FFBEnterVT(VT_FUNC_ARGS_DECL)
 {
-    ScrnInfoPtr pScrn = xf86Screens[scrnIndex];
+    SCRN_INFO_PTR(arg);
     FFBPtr pFfb = GET_FFB_FROM_SCRN(pScrn);
 
     pFfb->vtSema = FALSE;
@@ -870,9 +869,9 @@ FFBEnterVT(int scrnIndex, int flags)
 
 /* Mandatory */
 static void
-FFBLeaveVT(int scrnIndex, int flags)
+FFBLeaveVT(VT_FUNC_ARGS_DECL)
 {
-    ScrnInfoPtr pScrn = xf86Screens[scrnIndex];
+    SCRN_INFO_PTR(arg);
     FFBPtr pFfb = GET_FFB_FROM_SCRN(pScrn);
 
     FFBDacLeaveVT(pFfb);
@@ -895,9 +894,9 @@ FFBLeaveVT(int scrnIndex, int flags)
 
 /* Mandatory */
 static Bool
-FFBCloseScreen(int scrnIndex, ScreenPtr pScreen)
+FFBCloseScreen(CLOSE_SCREEN_ARGS_DECL)
 {
-	ScrnInfoPtr pScrn = xf86Screens[scrnIndex];
+	ScrnInfoPtr pScrn = xf86ScreenToScrn(pScreen);
 	FFBPtr pFfb = GET_FFB_FROM_SCRN(pScrn);
 
 	/* Restore kernel ramdac state before we unmap registers. */
@@ -919,7 +918,7 @@ FFBCloseScreen(int scrnIndex, ScreenPtr pScreen)
 		xf86SbusHideOsHwCursor (pFfb->psdp);
 
 	pScreen->CloseScreen = pFfb->CloseScreen;
-	return (*pScreen->CloseScreen)(scrnIndex, pScreen);
+	return (*pScreen->CloseScreen)(CLOSE_SCREEN_ARGS);
 }
 
 
@@ -927,9 +926,10 @@ FFBCloseScreen(int scrnIndex, ScreenPtr pScreen)
 
 /* Optional */
 static void
-FFBFreeScreen(int scrnIndex, int flags)
+FFBFreeScreen(FREE_SCREEN_ARGS_DECL)
 {
-	FFBFreeRec(xf86Screens[scrnIndex]);
+	SCRN_INFO_PTR(arg);
+	FFBFreeRec(pScrn);
 }
 
 
@@ -937,7 +937,7 @@ FFBFreeScreen(int scrnIndex, int flags)
 
 /* Optional */
 static ModeStatus
-FFBValidMode(int scrnIndex, DisplayModePtr mode, Bool verbose, int flags)
+FFBValidMode(SCRN_ARG_TYPE arg, DisplayModePtr mode, Bool verbose, int flags)
 {
 	if (mode->Flags & V_INTERLACE)
 		return MODE_BAD;
@@ -957,7 +957,7 @@ FFBSaveScreen(ScreenPtr pScreen, int mode)
        done in "ffb_dac.c" `for aesthetic reasons.'
     */
 {
-    ScrnInfoPtr pScrn = xf86Screens[pScreen->myNum];
+    ScrnInfoPtr pScrn = xf86ScreenToScrn(pScreen);
 
     return FFBDacSaveScreen(GET_FFB_FROM_SCRN(pScrn), mode);
 }

@@ -59,7 +59,7 @@ struct fastfill_parms ffb_fastfill_parms[] = {
 void
 CreatorVtChange (ScreenPtr pScreen, int enter)
 {
-	ScrnInfoPtr pScrn = xf86Screens[pScreen->myNum];
+	ScrnInfoPtr pScrn = xf86ScreenToScrn(pScreen);
 	FFBPtr pFfb = GET_FFB_FROM_SCRN (pScrn);
 	ffb_fbcPtr ffb = pFfb->regs;
 

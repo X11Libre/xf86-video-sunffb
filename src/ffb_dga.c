@@ -61,7 +61,7 @@ static DGAFunctionRec FFB_DGAFuncs = {
 
 void FFB_InitDGA(ScreenPtr pScreen)
 {
-	ScrnInfoPtr pScrn = xf86Screens[pScreen->myNum];
+	ScrnInfoPtr pScrn = xf86ScreenToScrn(pScreen);
 	FFBPtr pFfb;
 	DGAModePtr mode;
 	Bool result;
