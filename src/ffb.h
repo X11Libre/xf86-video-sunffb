@@ -31,7 +31,9 @@
 #include "xf86.h"
 #include "xf86_OSproc.h"
 #include "xf86RamDac.h"
+#ifdef HAVE_XAA_H
 #include "xaa.h"
+#endif
 #include <X11/Xmd.h>
 #include "gcstruct.h"
 #include "windowstr.h"
@@ -174,7 +176,9 @@ typedef struct {
 	unsigned char has_double_buffer;
 
 	/* XAA related info */
+#ifdef HAVE_XAA_H
 	XAAInfoRecPtr pXAAInfo;
+#endif
 	unsigned int xaa_fbc;
 	unsigned int xaa_wid;
 	unsigned int xaa_planemask;

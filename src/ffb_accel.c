@@ -35,7 +35,6 @@
 #include	"mistruct.h"
 #include	"miline.h"
 #include	"fb.h"
-#include	"xaa.h"
 
 #include	"ffb.h"
 #include	"ffb_fifo.h"
@@ -43,6 +42,7 @@
 #include	"ffb_loops.h"
 #include	"ffb_regs.h"
 
+#ifdef HAVE_XAA_H
 /* VISmoveImage.s */
 extern void VISmoveImageRL(unsigned char *src, unsigned char *dst, long w, long h, long skind, long dkind);
 extern void VISmoveImageLR(unsigned char *src, unsigned char *dst, long w, long h, long skind, long dkind);
@@ -841,8 +841,11 @@ static void CreatorAlignTabInit(FFBPtr pFfb)
 	}
 }
 
+#endif
+
 Bool FFBAccelInit(ScreenPtr pScreen, FFBPtr pFfb)
 {
+#ifdef HAVE_XAA_H
 	XAAInfoRecPtr infoRec;
 	ffb_fbcPtr ffb = pFfb->regs;
 
@@ -1097,4 +1100,7 @@ Bool FFBAccelInit(ScreenPtr pScreen, FFBPtr pFfb)
 
 	/* Success */
 	return TRUE;
+#else
+	return FALSE;
+#endif
 }
