@@ -1,6 +1,9 @@
 ffb - SUNFFB video driver for the Xorg X server
 -----------------------------------------------
 
+This driver supports Sun Creator, Creator 3D and Elite 3D video cards,
+which are UPA bus devices for UltraSPARC workstations.
+
 All questions regarding this software should be directed at the
 Xorg mailing list:
 
