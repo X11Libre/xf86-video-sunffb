@@ -172,6 +172,7 @@ FFBI2CPutBits(I2CBusPtr b, int clock, int data)
 #endif
 }
 
+#if 0
 Bool
 FFBi2cInit(ScrnInfoPtr pScrn)
 {
@@ -195,3 +196,4 @@ FFBi2cInit(ScrnInfoPtr pScrn)
 
 	return TRUE;
 }
+#endif
