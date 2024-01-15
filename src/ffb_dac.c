@@ -356,7 +356,7 @@ init_dac_flags(FFBPtr pFfb)
 	ffb_dac_info_t *p = &pFfb->dac_info;
 	ffb_dacPtr dac = pFfb->dac;
 	unsigned int did, manuf_rev, partnum;
-	char *device;
+	const char *device;
 
 	/* Fetch kernel WID. */
 	p->kernel_wid = *((volatile unsigned char *)pFfb->dfb8x);
