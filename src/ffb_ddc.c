@@ -35,6 +35,7 @@
 
 #include "xf86DDC.h"
 
+#if 0
 /* XXX This needs a lot more work.  Only an attempt at the PAC2 version
  * XXX is below, and that is untested.  The BT498 manual is unclear about
  * XXX several details and I must figure them out by trial and error.
@@ -172,7 +173,6 @@ FFBI2CPutBits(I2CBusPtr b, int clock, int data)
 #endif
 }
 
-#if 0
 Bool
 FFBi2cInit(ScrnInfoPtr pScrn)
 {
