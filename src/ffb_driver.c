@@ -164,12 +164,8 @@ FFBGetRec(ScrnInfoPtr pScrn)
 static void
 FFBFreeRec(ScrnInfoPtr pScrn)
 {
-    FFBPtr pFfb;
-
     if (pScrn->driverPrivate == NULL)
 	return;
-
-    pFfb = GET_FFB_FROM_SCRN(pScrn);
 
     free(pScrn->driverPrivate);
     pScrn->driverPrivate = NULL;
