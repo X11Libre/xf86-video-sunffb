@@ -58,8 +58,6 @@ static void	FFBFreeScreen(FREE_SCREEN_ARGS_DECL);
 static ModeStatus FFBValidMode(SCRN_ARG_TYPE arg, DisplayModePtr mode,
 			       Bool verbose, int flags);
 static void     FFBDPMSMode(ScrnInfoPtr pScrn, int DPMSMode, int flags);
-/* ffb_dga.c */
-extern void FFB_InitDGA(ScreenPtr pScreen);
 
 void FFBSync(ScrnInfoPtr pScrn);
 

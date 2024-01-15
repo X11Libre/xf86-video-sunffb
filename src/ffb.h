@@ -244,6 +244,8 @@ extern void FFBWidChangeBuffer(FFBPtr, unsigned int, int);
 /* Accelerated double-buffering. */
 extern Bool FFBDbePreInit(ScreenPtr);
 
+extern void FFB_InitDGA(ScreenPtr pScreen);
+
 /* The fastfill and pagefill buffer sizes change based upon
  * the resolution.
  */
