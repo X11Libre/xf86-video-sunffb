@@ -157,7 +157,7 @@ FFBGetRec(ScrnInfoPtr pScrn)
     if (pScrn->driverPrivate != NULL)
 	return TRUE;
 
-    pScrn->driverPrivate = xnfcalloc(sizeof(FFBRec), 1);
+    pScrn->driverPrivate = XNFcallocarray(sizeof(FFBRec), 1);
     return TRUE;
 }
 

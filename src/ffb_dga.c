@@ -74,7 +74,7 @@ void FFB_InitDGA(ScreenPtr pScreen)
 
 	pFfb = GET_FFB_FROM_SCRN(pScrn);
 
-	mode = xnfcalloc(sizeof(DGAModeRec), 1);
+	mode = XNFcallocarray(sizeof(DGAModeRec), 1);
 	if (!mode) {
 		xf86Msg(X_WARNING, "%s: DGA init failed, cannot alloc DGAMode.\n",
 			pFfb->psdp->device);
