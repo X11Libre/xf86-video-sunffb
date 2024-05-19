@@ -34,7 +34,6 @@ endif
 
 sunffb_drv_la_SOURCES = \
          compat-api.h \
-         ffb_accel.c \
          ffb_attr.c \
          ffb_cursor.c \
          ffb_dac.c \

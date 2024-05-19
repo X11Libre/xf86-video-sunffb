@@ -408,11 +408,9 @@ FFBPreInit(ScrnInfoPtr pScrn, int flags)
     }
 
     if (!pFfb->NoAccel) {
-        if (xf86LoadSubModule(pScrn, "xaa") == NULL) {
-            xf86DrvMsg(pScrn->scrnIndex, X_INFO,
-                       "Loading XAA failed, acceleration disabled\n");
-            pFfb->NoAccel = TRUE;
-        }
+        xf86DrvMsg(pScrn->scrnIndex, X_INFO,
+                   "Acceleration not available, disabled\n");
+        pFfb->NoAccel = TRUE;
     }
 
     if (pFfb->HWCursor && xf86LoadSubModule(pScrn, "ramdac") == NULL) {
@@ -752,9 +750,8 @@ FFBScreenInit(SCREEN_INIT_ARGS_DECL)
     xf86SetBlackWhitePixels(pScreen);
 
     if (!pFfb->NoAccel) {
-	if (!FFBAccelInit(pScreen, pFfb))
-	    return FALSE;
-	xf86Msg(X_INFO, "%s: Using acceleration\n", pFfb->psdp->device);
+	pFfb->NoAccel = TRUE;
+	xf86Msg(X_INFO, "%s: Disabling acceleration\n", pFfb->psdp->device);
     }
 
 
@@ -847,8 +844,6 @@ FFBEnterVT(VT_FUNC_ARGS_DECL)
     FFBPtr pFfb = GET_FFB_FROM_SCRN(pScrn);
 
     pFfb->vtSema = FALSE;
-    if (!pFfb->NoAccel)
-	CreatorVtChange (pScrn->pScreen, TRUE);
     if (pFfb->HWCursor)
 	xf86SbusHideOsHwCursor (pFfb->psdp);
 
@@ -870,9 +865,6 @@ FFBLeaveVT(VT_FUNC_ARGS_DECL)
     FFBPtr pFfb = GET_FFB_FROM_SCRN(pScrn);
 
     FFBDacLeaveVT(pFfb);
-
-    if (!pFfb->NoAccel)
-	CreatorVtChange (pScrn->pScreen, FALSE);
 
     if (pFfb->HWCursor)
 	xf86SbusHideOsHwCursor (pFfb->psdp);

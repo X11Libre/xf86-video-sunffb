@@ -43,11 +43,6 @@ static Bool FFB_SetMode(ScrnInfoPtr, DGAModePtr);
 static void FFB_SetViewport(ScrnInfoPtr, int, int, int);
 static int FFB_GetViewport(ScrnInfoPtr);
 static void FFB_Flush(ScrnInfoPtr);
-#ifdef HAVE_XAA_H
-static void FFB_FillRect(ScrnInfoPtr, int, int, int, int, unsigned long);
-static void FFB_BlitRect(ScrnInfoPtr, int, int, int, int,
-			 int, int);
-#endif
 
 static DGAFunctionRec FFB_DGAFuncs = {
 	FFB_OpenFramebuffer,
@@ -56,12 +51,7 @@ static DGAFunctionRec FFB_DGAFuncs = {
 	FFB_SetViewport,
 	FFB_GetViewport,
 	FFB_Flush,
-#ifdef HAVE_XAA_H
-	FFB_FillRect,
-	FFB_BlitRect,
-#else
 	NULL, NULL,
-#endif
 	NULL
 };
 
@@ -185,33 +175,3 @@ static void FFB_Flush(ScrnInfoPtr pScrn)
 	FFBWait(pFfb, ffb);
 }
 
-#ifdef HAVE_XAA_H
-extern void FFB_SetupForSolidFill(ScrnInfoPtr, int, int, unsigned int);
-extern void FFB_SubsequentSolidFillRect(ScrnInfoPtr, int, int, int, int);
-
-static void FFB_FillRect(ScrnInfoPtr pScrn, int x, int y, int w, int h, unsigned long color)
-{
-	FFBPtr pFfb = GET_FFB_FROM_SCRN(pScrn);
-
-	FFB_SetupForSolidFill(pScrn, color, GXcopy, ~0);
-	FFB_SubsequentSolidFillRect(pScrn, x, y, w, h);
-	SET_SYNC_FLAG(pFfb->pXAAInfo);
-}
-
-extern void FFB_SetupForScreenToScreenCopy(ScrnInfoPtr, int, int, int,
-					   unsigned int, int);
-extern void FFB_SubsequentScreenToScreenCopy(ScrnInfoPtr, int, int,
-					     int, int, int, int);
-
-static void FFB_BlitRect(ScrnInfoPtr pScrn, int srcx, int srcy,
-			 int w, int h, int dstx, int dsty)
-{
-	FFBPtr pFfb = GET_FFB_FROM_SCRN(pScrn);
-	int xdir = ((srcx < dstx) && (srcy == dsty)) ? -1 : 1;
-	int ydir = (srcy < dsty) ? -1 : 1;
-
-	FFB_SetupForScreenToScreenCopy(pScrn, xdir, ydir, GXcopy, ~0, -1);
-	FFB_SubsequentScreenToScreenCopy(pScrn, srcx, srcy, dstx,dsty, w, h);
-	SET_SYNC_FLAG(pFfb->pXAAInfo);
-}
-#endif

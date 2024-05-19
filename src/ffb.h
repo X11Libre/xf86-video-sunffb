@@ -31,9 +31,6 @@
 #include "xf86.h"
 #include "xf86_OSproc.h"
 #include "xf86Cursor.h"
-#ifdef HAVE_XAA_H
-#include "xaa.h"
-#endif
 #include <X11/Xmd.h>
 #include "gcstruct.h"
 #include "windowstr.h"
@@ -175,21 +172,6 @@ typedef struct {
 	unsigned char has_z_buffer;
 	unsigned char has_double_buffer;
 
-	/* XAA related info */
-#ifdef HAVE_XAA_H
-	XAAInfoRecPtr pXAAInfo;
-#endif
-	unsigned int xaa_fbc;
-	unsigned int xaa_wid;
-	unsigned int xaa_planemask;
-	unsigned int xaa_linepat;
-	int xaa_xdir, xaa_ydir, xaa_rop;
-	unsigned char *xaa_scanline_buffers[2];
-	int xaa_scanline_x, xaa_scanline_y, xaa_scanline_w;
-	unsigned char *xaa_tex;
-	int xaa_tex_pitch, xaa_tex_width, xaa_tex_height;
-	unsigned int xaa_tex_color;
-
 	enum ffb_resolution ffb_res;
 	BoxRec ClippedBoxBuf[64];
 	xRectangle Pf_Fixups[4];
@@ -212,10 +194,6 @@ typedef struct {
 
 	OptionInfoPtr Options;
 } FFBRec, *FFBPtr;
-
-/* Acceleration */
-extern Bool FFBAccelInit(ScreenPtr, FFBPtr);
-extern void CreatorVtChange (ScreenPtr pScreen, int enter);
 
 /* HW cursor support */
 extern Bool FFBHWCursorInit(ScreenPtr);
