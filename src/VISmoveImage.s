@@ -30,7 +30,7 @@
  *		   hardware bug. -DaveM
  */
 
-/* 
+/*
    void
    VISmoveImageLR(unsigned char *src, unsigned char *dst, long w, long h, long skind, long dkind)
    {

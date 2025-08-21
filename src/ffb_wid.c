@@ -217,7 +217,7 @@ update_wids(FFBPtr pFfb, int index)
 	DACCFG_WRITE(dac, base, p->wid_table.wid_pool[index].wlut_regval);
 
 	/* Schedule the window transfer. */
-	DACCFG_WRITE(dac, FFBDAC_CFG_WTCTRL, 
+	DACCFG_WRITE(dac, FFBDAC_CFG_WTCTRL,
 		     (FFBDAC_CFG_WTCTRL_TCMD | FFBDAC_CFG_WTCTRL_TE));
 
 	limit = 1000000;

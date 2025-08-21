@@ -78,7 +78,7 @@
 #define	FFB_DAC_VOFF		0x0bc06000
 #define	FFB_PROM_VOFF		0x0bc08000
 #define	FFB_EXP_VOFF		0x0bc18000
- 
+
 #if defined(__GNUC__) && defined(USE_VIS)
 #define FFB_ALIGN64	__attribute__((aligned(8)))
 #else

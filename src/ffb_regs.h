@@ -102,11 +102,11 @@ typedef struct _ffb_fbc {
 						/*			fastfill(NX)	*/
 /*0x78*/unsigned int		pad6[2];	/* Reserved				*/
 /*0x80*/unsigned int		pad7[32];	/* Reserved				*/
-	
+
 	/* Setup Unit's vertex state register */
 /*100*/	volatile unsigned int	suvtx;
 /*104*/	unsigned int		pad8[63];	/* Reserved				*/
-	
+
 	/* Frame Buffer Control Registers */
 /*200*/	volatile unsigned int	ppc;		/* Pixel Processor Control		*/
 /*204*/	volatile unsigned int	wid;		/* Current WID				*/
@@ -149,7 +149,7 @@ typedef struct _ffb_fbc {
 /*298*/	volatile unsigned int	ypmask;		/* Y PlaneMask				*/
 /*29c*/	volatile unsigned int	zpmask;		/* Z PlaneMask				*/
 /*2a0*/	ffb_auxclip		auxclip[4]; 	/* Auxiliary Viewport Clip		*/
-	
+
 	/* New 3dRAM III support regs */
 /*2c0*/	volatile unsigned int	rawblend2;
 /*2c4*/	volatile unsigned int	rawpreblend;
@@ -167,7 +167,7 @@ typedef struct _ffb_fbc {
 /*2f4*/	volatile unsigned int	rawcmp;
 /*2f8*/	volatile unsigned int	rawwac;
 /*2fc*/	volatile unsigned int	fbramid;
-	
+
 /*300*/	volatile unsigned int	drawop;		/* Draw OPeration			*/
 /*304*/	unsigned int		pad10[2];	/* Reserved				*/
 /*30c*/	volatile unsigned int	lpat;		/* Line Pattern control			*/
@@ -488,7 +488,7 @@ do {	__asm__ __volatile__ ("ldx\t%0, %%g2;" \
 			      "stx\t%%g2, %1" \
 	 : : "m" (*(__srcp)), "m" (*(__regp)) \
          : "g2"); \
-} while(0)			      
+} while(0)
 
 #define FFB_WRITE64(__regp, __lo32, __hi32) \
 	FFB_WRITE64_COMMON(__regp, __lo32, __hi32, g2, g3)

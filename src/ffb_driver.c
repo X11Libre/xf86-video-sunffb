@@ -68,7 +68,7 @@ void FFBSync(ScrnInfoPtr pScrn);
 #define FFB_MINOR_VERSION PACKAGE_VERSION_MINOR
 #define FFB_PATCHLEVEL PACKAGE_VERSION_PATCHLEVEL
 
-/* 
+/*
  * This contains the functions needed by the server after loading the driver
  * module.  It must be supplied, and gets passed back by the SetupProc
  * function in the dynamic case.  In the static case, a reference to this
@@ -236,7 +236,7 @@ FFBProbe(DriverPtr drv, int flags)
     numUsed = xf86MatchSbusInstances(FFB_NAME, SBUS_DEVICE_FFB,
 		   devSections, numDevSections,
 		   drv, &usedChips);
-				    
+
     free(devSections);
     if (numUsed <= 0)
 	return FALSE;
@@ -251,7 +251,7 @@ FFBProbe(DriverPtr drv, int flags)
 	 */
 	if(pEnt->active) {
 	    ScrnInfoPtr pScrn;
-	    
+
 	    /* Allocate a ScrnInfoRec and claim the slot */
 	    pScrn = xf86AllocateScreen(drv, 0);
 
@@ -293,7 +293,7 @@ FFBPreInit(ScrnInfoPtr pScrn, int flags)
      * not at the start of each server generation.  This means that
      * only things that are persistent across server generations can
      * be initialised here.  xf86Screens[] is (pScrn is a pointer to one
-     * of these).  Privates allocated using xf86AllocateScrnInfoPrivateIndex()  
+     * of these).  Privates allocated using xf86AllocateScrnInfoPrivateIndex()
      * are too, and should be used for data that must persist across
      * server generations.
      *
@@ -306,7 +306,7 @@ FFBPreInit(ScrnInfoPtr pScrn, int flags)
 	return FALSE;
 
     pFfb = GET_FFB_FROM_SCRN(pScrn);
-    
+
     /* Set pScrn->monitor */
     pScrn->monitor = pScrn->confScreen->monitor;
 
@@ -328,7 +328,7 @@ FFBPreInit(ScrnInfoPtr pScrn, int flags)
     /*********************
     deal with depth
     *********************/
-    
+
     if (!xf86SetDepthBpp(pScrn, 24, 0, 32, Support32bppFb)) {
 	return FALSE;
     } else {
@@ -352,7 +352,7 @@ FFBPreInit(ScrnInfoPtr pScrn, int flags)
 	return FALSE;
     memcpy(pFfb->Options, FFBOptions, sizeof(FFBOptions));
     xf86ProcessOptions(pScrn->scrnIndex, pScrn->options, pFfb->Options);
-    
+
     /*
      * This must happen after pScrn->display has been set because
      * xf86SetWeight references it.
@@ -385,7 +385,7 @@ FFBPreInit(ScrnInfoPtr pScrn, int flags)
     from = X_DEFAULT;
 
     /* determine whether we use hardware or software cursor */
-    
+
     pFfb->HWCursor = TRUE;
     if (xf86GetOptValBool(pFfb->Options, OPTION_HW_CURSOR, &pFfb->HWCursor))
 	from = X_CONFIG;
@@ -393,7 +393,7 @@ FFBPreInit(ScrnInfoPtr pScrn, int flags)
 	from = X_CONFIG;
 	pFfb->HWCursor = FALSE;
     }
-    
+
     xf86DrvMsg(pScrn->scrnIndex, from, "Using %s cursor\n",
 		pFfb->HWCursor ? "HW" : "SW");
 
@@ -401,7 +401,7 @@ FFBPreInit(ScrnInfoPtr pScrn, int flags)
 	pFfb->NoAccel = TRUE;
 	xf86DrvMsg(pScrn->scrnIndex, X_CONFIG, "Acceleration disabled\n");
     }
-        
+
     if (xf86LoadSubModule(pScrn, "fb") == NULL) {
 	FFBFreeRec(pScrn);
 	return FALSE;
@@ -427,7 +427,7 @@ FFBPreInit(ScrnInfoPtr pScrn, int flags)
     /*********************
     set up clock and mode stuff
     *********************/
-    
+
     pScrn->progClock = TRUE;
 
     if(pScrn->display->virtualX || pScrn->display->virtualY) {
@@ -574,7 +574,7 @@ FFBScreenInit(SCREEN_INIT_ARGS_DECL)
     unsigned int afb_fem;
     VisualPtr visual;
 
-    /* 
+    /*
      * First get the ScrnInfoRec
      */
     pScrn = xf86ScreenToScrn(pScreen);
@@ -761,12 +761,12 @@ FFBScreenInit(SCREEN_INIT_ARGS_DECL)
     /* Initialise cursor functions */
     miDCInitialize (pScreen, xf86GetPointerScreenFuncs());
 
-    /* Initialize HW cursor layer. 
+    /* Initialize HW cursor layer.
      * Must follow software cursor initialization.
      */
-    if (pFfb->HWCursor) { 
+    if (pFfb->HWCursor) {
 	if(!FFBHWCursorInit(pScreen)) {
-	    xf86DrvMsg(pScrn->scrnIndex, X_ERROR, 
+	    xf86DrvMsg(pScrn->scrnIndex, X_ERROR,
 		       "Hardware cursor initialization failed\n");
 	    return(FALSE);
 	}
@@ -824,7 +824,7 @@ FFBSwitchMode(SWITCH_MODE_ARGS_DECL)
  * displayed location in the video memory.
  */
 /* Usually mandatory */
-static void 
+static void
 FFBAdjustFrame(ADJUST_FRAME_ARGS_DECL)
 {
     /* we don't support virtual desktops */

@@ -55,7 +55,7 @@ FFBLoadCursorImage(ScrnInfoPtr pScrn, unsigned char *src)
     FFBDacCursorLoadBitmap(pFfb, x, y, data);
 }
 
-static void 
+static void
 FFBShowCursor(ScrnInfoPtr pScrn)
 {
     FFBPtr pFfb = GET_FFB_FROM_SCRN(pScrn);
@@ -97,7 +97,7 @@ FFBSetCursorPosition(ScrnInfoPtr pScrn, int x, int y)
 	pFfb->CursorShiftY = CursorShiftY;
 	FFBLoadCursorImage(pScrn, pFfb->CursorData);
     }
-	
+
     FFBDacLoadCursorPos(pFfb, x, y);
 }
 
@@ -109,7 +109,7 @@ FFBSetCursorColors(ScrnInfoPtr pScrn, int bg, int fg)
     FFBDacLoadCursorColor(pFfb, fg, bg);
 }
 
-Bool 
+Bool
 FFBHWCursorInit(ScreenPtr pScreen)
 {
     ScrnInfoPtr pScrn = xf86ScreenToScrn(pScreen);
@@ -123,7 +123,7 @@ FFBHWCursorInit(ScreenPtr pScreen)
 
     infoPtr = xf86CreateCursorInfoRec();
     if(!infoPtr) return FALSE;
-    
+
     pFfb->CursorInfoRec = infoPtr;
 
     infoPtr->MaxWidth = 64;
