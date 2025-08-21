@@ -197,7 +197,7 @@ dac_stop(FFBPtr pFfb)
 
 			if (vctr == 0)
 				break;
-		}		
+		}
 
 		DACCFG_WRITE(dac, FFBDAC_CFG_TGEN, 0);
 	}
@@ -555,7 +555,7 @@ FFBDacSaveScreen(FFBPtr pFfb, int mode) {
 /*  DPMS Control, also hinted at by David Miller.
 
     The rule seems to be:
-    
+
     StandBy  =  -HSYNC +VSYNC -VIDEO
     Suspend  =  +HSYNC -VSYNC -VIDEO
     Off      =  -HSYNC -VSYNC -VIDEO
@@ -605,7 +605,7 @@ FFBDacDPMSMode(FFBPtr pFfb, int DPMSMode, int flags) {
       tmp |= (FFBDAC_CFG_TGEN_VSD | FFBDAC_CFG_TGEN_HSD);  /* Kill HSYNC, VSYNC both */
       tmp &= ~FFBDAC_CFG_TGEN_VIDE;                        /* Kill the video         */
       break;
-      
+
     default:
       return;     /* If we get here, we really should log an error */
   }

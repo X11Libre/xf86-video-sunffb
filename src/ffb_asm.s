@@ -291,7 +291,7 @@ FFB_LINE_LOOP1:
 	add	%o2, 4, %o2
 	or	%g7, %g3, %g7
 	subcc	%g1, 3, %g1
- 
+
 	bl,pn	%icc, FFB_LINE1_WAIT
 	 add	%g7, %o4, %g7
 9:	cmp	%o2, %o3
@@ -332,7 +332,7 @@ FFB_LINE_LOOP2:
 	sllx	%g4, 32, %g7
 	srl	%g4, 16, %g3
 	add	%o2, 4, %o2
- 
+
 	or	%g7, %g3, %g7
 	subcc	%g1, 3, %g1
 	bl,pn	%icc, FFB_LINE2_WAIT
