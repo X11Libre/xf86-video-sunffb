@@ -14,7 +14,7 @@ ffb \- SUNFFB video driver
 .SH DESCRIPTION
 .B ffb
 is an
-.B Xorg
+.B XLibre
 driver for Sun Creator, Creator 3D, and Elite 3D video cards.
 THIS MAN PAGE NEEDS TO BE FILLED IN.
 .SH SUPPORTED HARDWARE
@@ -27,7 +27,7 @@ Please refer to
 for general configuration details.
 This section only covers configuration details specific to this driver.
 .SH "SEE ALSO"
-.BR Xorg (1),
+.BR XLibre (1),
 .BR Xserver (1),
 .BR xorg.conf (5),
 .BR X (7)
