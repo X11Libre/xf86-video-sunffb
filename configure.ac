@@ -72,9 +72,6 @@ PKG_CHECK_MODULES(XEXT, [xextproto >= 7.0.99.1])
 
 AC_SUBST([moduledir])
 
-DRIVER_NAME=sunffb
-AC_SUBST([DRIVER_NAME])
-
 AC_CONFIG_FILES([
                 Makefile
                 src/Makefile
