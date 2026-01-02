@@ -40,7 +40,6 @@
 
 #include <X11/extensions/dpmsconst.h>
 
-#include "compat-api.h"
 /* Various offsets in virtual (ie. mmap()) spaces Linux and Solaris support. */
 /* Note: do not mmap FFB_DFB8R_VOFF and following mappings using one mmap together
    with any previous SFB mapping, otherwise the OS won't be able to use 4M pages
