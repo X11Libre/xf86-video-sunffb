@@ -114,8 +114,8 @@ static XF86ModuleVersionInfo sunffbVersRec =
 
 _X_EXPORT XF86ModuleData sunffbModuleData = { &sunffbVersRec, ffbSetup, NULL };
 
-pointer
-ffbSetup(pointer module, pointer opts, int *errmaj, int *errmin)
+void *
+ffbSetup(void *module, void *opts, int *errmaj, int *errmin)
 {
     static Bool setupDone = FALSE;
 
@@ -132,7 +132,7 @@ ffbSetup(pointer module, pointer opts, int *errmaj, int *errmin)
 	 * The return value must be non-NULL on success even though there
 	 * is no TearDownProc.
 	 */
-	return (pointer)TRUE;
+	return (void*)TRUE;
     } else {
 	if (errmaj) *errmaj = LDR_ONCEONLY;
 	return NULL;
