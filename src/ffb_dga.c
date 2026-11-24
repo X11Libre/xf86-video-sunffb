@@ -130,7 +130,8 @@ static Bool FFB_OpenFramebuffer(ScrnInfoPtr pScrn, char **name, unsigned char **
 {
 	FFBPtr pFfb = GET_FFB_FROM_SCRN(pScrn);
 
-	*name = pFfb->psdp->device;
+	/* the server only reads the name */
+	*name = (char *)pFfb->psdp->device;
 
 	/* We give the user the dumb frame buffer. */
 	*mem = (unsigned char *)FFB_DFB24_VOFF;
