@@ -64,6 +64,7 @@ void FFBSync(ScrnInfoPtr pScrn);
 #define FFB_MAJOR_VERSION PACKAGE_VERSION_MAJOR
 #define FFB_MINOR_VERSION PACKAGE_VERSION_MINOR
 #define FFB_PATCHLEVEL PACKAGE_VERSION_PATCHLEVEL
+#define FFB_VERSION_SUFFIX PACKAGE_VERSION_SUFFIX
 
 /*
  * This contains the functions needed by the server after loading the driver
@@ -113,6 +114,9 @@ static XF86ModuleVersionInfo sunffbVersRec =
 };
 
 _X_EXPORT XF86ModuleData sunffbModuleData = { &sunffbVersRec, ffbSetup, NULL };
+#ifdef XF86_MODULE_VERSION_SUFFIX
+XF86_MODULE_VERSION_SUFFIX(sunffb, FFB_VERSION_SUFFIX);
+#endif
 
 void *
 ffbSetup(void *module, void *opts, int *errmaj, int *errmin)
